@@ -5,6 +5,7 @@ Main loop for Airbnb clone console
 
 import cmd
 import json
+import os
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -20,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
     Class for Interperator
     """
 
-    prompt = "(hbnb)"
+    prompt = '(hbnb) '
 
     __hbnb_class_map = {
         'BaseModel': BaseModel,
@@ -37,26 +38,28 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, arg):
         """
-        method to be executed before command line execution
+        Method to be executed before command line execution.
         """
         parsed_args = arg.split('.')
 
-        if parsed_args[0] in self.__lists:
+        if parsed_args[0] in self.__hbnb_class_map:
 
             further_parsed_args = parsed_args[1].split("(")
-            ids = further_parsed_args[1].split(")").strip("\"'")
+            further_parsed_args2 = further_parsed_args[1].split(')')
+            ids = further_parsed_args2[0].strip('"\'')
 
-            if further_parsed_args[0] in self.__methods_ac:
-                return(''.join(further_parsed_args[0],
+            if further_parsed_args[0] in ['all', 'count']:
+                arg = ''.join([further_parsed_args[0],
                                ' ',
-                               parsed_args[0]))
+                               parsed_args[0]])
 
-            elif further_parsed_args[0] in self.__methods_sd:
-                return(''.join(further_parsed_args[0],
+            elif further_parsed_args[1] in ['show', 'destroy']:
+                arg = ''.join([further_parsed_args[0],
                                ' ',
                                parsed_args[0],
                                ' ',
-                               ids))
+                               ids])
+        return arg
 
     def do_quit(self, arg):
         """
@@ -66,21 +69,33 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """
-        Help for quit
+        Help for quit.
         """
         print('Quit command to exit the program')
 
     def do_EOF(self, arg):
         """
-        End-of-file
+        End-of-file indicator. Just Return true.
         """
         return True
 
     def help_EOF(self):
         """
-        Help for EOF
+        Help for EOF.
         """
         print('End of File')
+
+    def emptyline(self):
+        """
+        Do nothing just an emptyline.
+        """
+        pass
+
+    def help_emptyline(self):
+        """
+        Help for empty line.
+        """
+        print('Do Nothing (emptyline)')
 
     def do_create(self, arg):
         """ Creates a new instance of BaseModel, saves it (to the JSON file)
@@ -94,13 +109,13 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.__hbnb_class_map:
             print('** class doesn\'t exist **')
         else:
-            arg = self.__hbnb_class_map(arg)
+            arg = self.__hbnb_class_map[arg]()
             arg.save()
             print(arg.id)
 
     def help_create(self):
         """
-        Help for create
+        Help for create.
         """
         print('Creates an instance of a Base Model, saves it to  a JSON file')
 
@@ -114,14 +129,14 @@ class HBNBCommand(cmd.Cmd):
         else:
             parsed_args = arg.split()
 
-        if parsed_args[0] not in self.__class_map:
+        if parsed_args[0] not in self.__hbnb_class_map:
             print('** class doesn\'t exist **')
         elif len(parsed_args) == 1:
             print('** instance id missing **')
         else:
             joined_obj_symbol = ''.join([parsed_args[0], '.', parsed_args[1]])
             try:
-                print(dicts[joined_obj_symbol])
+                print(storage.all()[joined_obj_symbol])
             except KeyError:
                 print('** no instance found **')
 
@@ -143,14 +158,14 @@ class HBNBCommand(cmd.Cmd):
         else:
             parsed_args = arg.split()
 
-        if parsed_args[0] not in self.__class_map:
+        if parsed_args[0] not in self.__hbnb_class_map:
             print('** class doesn\'t exist **')
         elif len(parsed_args) == 1:
             print('** instance id missing **')
         else:
             joined_obj_symbol = ''.join([parsed_args[0], '.', parsed_args[1]])
             try:
-                del (dicts[joined_obj_symbol])
+                del (storage.all()[joined_obj_symbol])
                 storage.save()
             except KeyError:
                 print('** no instance found **')
@@ -171,9 +186,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             parsed_args = arg.split()
 
-        if parsed_args[0] not in self.__class_map:
+        if parsed_args[0] not in self.__hbnb_class_map:
             print('** class doesn\'t exist **')
-        elif len(args) == 2:
+        elif len(parsed_args) == 2:
             obj_lst = []
             for i in storage.all().values():
                 if len(parsed_args) > 0:
@@ -185,7 +200,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_all(self):
         """
-        Help for all command
+        Help for all command.
         """
         print('Prints all string representation of all instances')
 
