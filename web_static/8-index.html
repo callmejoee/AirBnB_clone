@@ -1,73 +1,135 @@
-.price_by_night {
-    color: #FF5A5F;
-    width: 60px;
-    height: 60px;
-    font-size: 30px;
-    margin: auto;
-    padding-top: 11px;
-    padding-right: 10px;
-}
-.information {
-    height: 80px;
-    border-top: solid 1px #DDDDDD;
-    border-bottom: solid 1px #DDDDDD;
-    display: flex;
-	flex-direction: row;
-    
-}
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <head>
+        <link rel="stylesheet" href="./styles/3-common.css">
+        <link rel="stylesheet" href="./styles/3-header.css">
+        <link rel="stylesheet" href="./styles/3-footer.css">
+        <link rel="icon" href="images/icon.png">
+        <link rel="stylesheet" href="./styles/5-filters.css">
+        <link rel="stylesheet" href="./styles/6-filters.css">
+        <link rel="stylesheet" href="./styles/7-places.css">
+        <link rel="stylesheet" href="./styles/8-places.css">
+        
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container">
+            <section class="filters">
+                <button> Search </button>
+                <div class="locations">
+                    <h3>States</h3>
+                    <h4>Cairo, Alex...</h4>
+                    <ul class="popover">
+                        <li><h2>Cairo</h2></li>
+                        <ul>
+                            <li>Helwan</li>
+                            <li>Maadi</li>
+                        </ul>
+                        <li><h2>Alex</h2></li>
+                        <ul>
+                            <li>Library</li>
+                            <li>Stanley Bridge</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="amenities">
+                    <h3>Amenities</h3>
+                    <h4>Choose from...</h4>
+                    <ul class="popover">
+                        <li>Kitchen</li>
+                        <li>Internet</li>
+                        <li>Cable TV</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="places">
+                <h1>Places</h1>
+                    <article>
+                        <h2>Villa</h2>
+                        <div class="border">
+                            <div class="price_by_night">100$</div>
+                        </div>
+                        <div class="information">
+                            <div class="max_guest">
+                                13
+                            </div>
+                            <div class="number_rooms">
+                                6
+                            </div>
+                            <div class="number_bathrooms">
+                                4
+                            </div>
+                        </div>
+                        <div class="user">
+                            <p><span>Owner: </span> John</p>
+                        </div>
+                        <div class="description">
+                            <p>
+                                This is a big villa Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Laboriosam nisi sint quisquam officiis, iste, quibusdam voluptas sit hic quidem est debitis rem possimus ut cumque ex eligendi dolore optio recusandae?
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <h2>Apartment</h2>
+                        <div class="border">
+                            <div class="price_by_night">120$</div>
+                        </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            13
+                        </div>
+                        <div class="number_rooms">
+                            6
+                        </div>
+                        <div class="number_bathrooms">
+                            4
+                        </div>
+                    </div>
+                        <div class="user">
+                            <p><span>Owner: </span> John</p>
+                        </div>
+                        <div class="description">
+                            <p>
+                                This is a big villa Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Laboriosam nisi sint quisquam officiis, iste, quibusdam voluptas sit hic quidem est debitis rem possimus ut cumque ex eligendi dolore optio recusandae?
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <h2>Room</h2>
+                        <div class="border">
+                            <div class="price_by_night">150$</div>
+                        </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            13
+                        </div>
+                        <div class="number_rooms">
+                            6
+                        </div>
+                        <div class="number_bathrooms">
+                            4
+                        </div>
+                    </div>
+                        <div class="user">
+                            <p><span>Owner: </span> John</p>
+                        </div>
+                        <div class="description">
+                            <p>
+                                This is a big villa Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Laboriosam nisi sint quisquam officiis, iste, quibusdam voluptas sit hic quidem est debitis rem possimus ut cumque ex eligendi dolore optio recusandae?
+                            </p>
+                        </div>
+                        
+                    </article>
+            </section>
+        </div>
+        <footer>
+            <p>Best School</p>
+        </footer>
+    </body>
 
-.border {
-    border: solid 4px #FF5A5F;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    margin: auto;
-    align-items: center;
-    padding: 5px;
-    padding-right: 10px;
-    margin-bottom: 11px;
-}
-
-.max_guest,
-.number_rooms,
-.number_bathrooms {
-    width: 100px;
-    margin: 15px;
-}
-.max_guest, .number_rooms, .number_bathrooms {
-	width: 100px;
-    text-align: center;
-    align-items: center;
-    padding: 45px;
-} 
-
-.max_guest {
-    background: url(../images/icon_group.png) no-repeat;
-    background-position-x: center ;
-
-}
-.number_bathrooms {
-    background: url(../images/icon_bath.png) no-repeat;
-    background-position-x: center ;
-
-}
-.number_rooms {
-    background: url(../images/icon_bed.png) no-repeat;
-    background-position-x: center ;
-
-}
-.user span {
-    font-weight: bold;
-}
-.description p {
-	padding-top: 35px;
-	text-align: center;
-}
-
-footer {
-    position: relative;
-}
-
-.places h2 {
-    text-align: center;
-}
+</html>
